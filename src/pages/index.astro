@@ -1,17 +1,202 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import WhatsAppBtn from '../components/WhatsAppBtn.astro';
 
+// Servicios requeridos
+const servicesData = [
+	{
+		title: "Desarrollo Web",
+		description: "Diseño y construcción de sitios corporativos modernos, ultra rápidos, optimizados para SEO y conversión de clientes.",
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><line x1="2" y1="8" x2="22" y2="8"></line></svg>`,
+		tags: ["Astro", "SEO Optimización", "Corporate Web", "UX/UI"]
+	},
+	{
+		title: "Desarrollo de Software a Medida",
+		description: "Construcción de APIs de alto rendimiento y backend empresarial con integración de Python, FastAPI, PostgreSQL y Redis.",
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="12" y1="2" x2="12" y2="22"></line></svg>`,
+		tags: ["Python", "FastAPI", "PostgreSQL", "Redis"]
+	},
+	{
+		title: "DevOps e Infraestructura",
+		description: "Servicios de virtualización (Proxmox/Cloud), automatización de despliegues (CI/CD) y orquestación de contenedores Docker.",
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
+		tags: ["Docker", "Proxmox", "Virtualización", "CI/CD"]
+	},
+	{
+		title: "Soporte IT y Gestión de Usuarios",
+		description: "Soporte técnico corporativo de nivel empresarial, validación rigurosa de identidades y sincronización de accesos.",
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+		tags: ["Soporte 24/7", "Gestión Identidades", "Active Directory", "Seguridad"]
+	}
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="BaezIbarraTech SpA | Desarrollo Web, Software & DevOps">
+	<!-- Hero Header Section -->
+	<Hero />
+
+	<!-- Services Section -->
+	<section id="servicios" class="services-section">
+		<div class="services-container">
+			<div class="section-header text-center">
+				<span class="section-tag">Nuestras Capacidades</span>
+				<h2 class="section-title">Soluciones de <span class="text-gradient">Ingeniería & IT</span></h2>
+				<p class="section-subtitle">
+					Ofrecemos un ecosistema completo de servicios tecnológicos orientados a maximizar el rendimiento, la disponibilidad y la seguridad de tu negocio.
+				</p>
+			</div>
+
+			<div class="services-grid">
+				{servicesData.map((service) => (
+					<ServiceCard 
+						title={service.title}
+						description={service.description}
+						icon={service.icon}
+						tags={service.tags}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Value Banner Section -->
+	<section class="value-banner-section">
+		<div class="banner-container glass-card">
+			<div class="banner-content">
+				<h3>¿Listo para escalar la infraestructura tecnológica de tu empresa?</h3>
+				<p>Diseñamos entornos resilientes y software de alta precisión adaptado a tus metas.</p>
+			</div>
+			<a href="#contacto" class="btn-banner">Agendar Consulta Técnica</a>
+		</div>
+	</section>
+
+	<!-- Contact Form Section -->
+	<ContactForm formspreeEndpoint="https://formspree.io/f/TU_ENDPOINT" />
+
+	<!-- Floating WhatsApp Action Button -->
+	<WhatsAppBtn phone="TUMUNERO" />
+</Layout>
+
+<style>
+	/* Services Section */
+	.services-section {
+		padding: 6rem 2rem;
+		position: relative;
+	}
+
+	.services-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.section-tag {
+		font-family: var(--font-mono);
+		color: var(--neon-cyan);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		background: rgba(0, 242, 254, 0.08);
+		border: 1px solid var(--border-glass-glow);
+		padding: 0.3rem 1rem;
+		border-radius: 20px;
+		display: inline-block;
+		margin-bottom: 1rem;
+	}
+
+	.section-title {
+		font-size: 2.5rem;
+		font-weight: 800;
+		color: var(--text-primary);
+		margin-bottom: 1rem;
+	}
+
+	.text-gradient {
+		background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.section-subtitle {
+		color: var(--text-secondary);
+		font-size: 1.05rem;
+		max-width: 650px;
+		margin: 0 auto 3.5rem;
+		line-height: 1.6;
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+		gap: 2rem;
+	}
+
+	@media (max-width: 768px) {
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Value Banner Section */
+	.value-banner-section {
+		padding: 2rem 2rem 4rem;
+	}
+
+	.banner-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		background: linear-gradient(135deg, rgba(0, 242, 254, 0.1), rgba(9, 251, 211, 0.05));
+		border: 1px solid var(--border-glass-glow);
+		border-radius: 20px;
+		padding: 3rem;
+		backdrop-filter: blur(16px);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 242, 254, 0.15);
+	}
+
+	@media (max-width: 850px) {
+		.banner-container {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+
+	.banner-content h3 {
+		font-size: 1.6rem;
+		font-weight: 700;
+		color: var(--text-primary);
+		margin-bottom: 0.6rem;
+	}
+
+	.banner-content p {
+		color: var(--text-secondary);
+		font-size: 1rem;
+	}
+
+	.btn-banner {
+		background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
+		color: #0a0a0a;
+		font-weight: 700;
+		font-size: 0.95rem;
+		padding: 0.9rem 1.8rem;
+		border-radius: 12px;
+		text-decoration: none;
+		white-space: nowrap;
+		transition: all 0.3s ease;
+		box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+	}
+
+	.btn-banner:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 10px 30px rgba(9, 251, 211, 0.6);
+	}
+</style>
